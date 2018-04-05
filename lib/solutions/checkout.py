@@ -3,7 +3,7 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-VALID_VALUES = ("A", "B", "C", "D")
+VALID_VALUES = ("A", "B", "C", "D", "E")
 
 # We are going to sell a new item E.
 # Normally E costs 40, but if you buy 2 of Es you will get B free.
@@ -57,3 +57,6 @@ def checkout(skus):
         total += extra * 40
 
     return total
+
+
+#print(checkout("ABCDE")) # 155
