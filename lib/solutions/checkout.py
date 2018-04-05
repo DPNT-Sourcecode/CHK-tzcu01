@@ -26,17 +26,26 @@ def checkout(skus):
 
     total = 0
     a_count = skus.count("A")
-    extra = a_count % 3
-    if a_count != extra:
-        times = (a_count - extra) / 3
-        extra = a_count % 5
-        total += 130 * times
+    extra = a_count % 5
+    if a_count != extra:  # at least one special price 200
+        total += 200 * ((a_count - extra) / 5)
+    if extra:
+        extra = a_count % 3
+        if a_count != extra:  # at least one special price 130
+            total += 130 * ((a_count - extra) / 3)
+    # if a_count != extra:
+    #     times = (a_count - extra) / 3
+    #     extra = a_count % 5
+    #     if a_count != extra: # for 5 or more
+    #
+    #
+    #     total += 130 * times
     if extra:
         total += extra * 50
 
     b_count = skus.count("B")
     extra = b_count % 2
-    if b_count != extra:
+    if b_count != extra:  # at least one special price 45
         total += 45 * ((b_count - extra) / 2)
     if extra:
         total += extra * 30
