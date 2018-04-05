@@ -111,9 +111,21 @@ def checkout(skus):
         skus = skus.replace("M", "", replace_times)  # delete free M
     total += n_count * 40
 
-    # | N    | 40    | 3N get one M free      |
-    # | P    | 50    | 5P for 200             |
-    # | Q    | 30    | 3Q for 80              |
+    p_count = skus.count("P")
+    extra = p_count % 5  # 5P for 200
+    if p_count != extra:  # at least one special price
+        total += 200 * ((p_count - extra) / 5)
+    if extra:
+        total += extra * 50
+
+    q_count = skus.count("Q")
+    extra = q_count % 3  # 3Q for 80
+    if q_count != extra:  # at least one special price
+        total += 80 * ((q_count - extra) / 3)
+    if extra:
+        total += extra * 30
+
+
     # | R    | 50    | 3R get one Q free      | !
     # | U    | 40    | 3U get one U free      |
     # | V    | 50    | 2V for 90, 3V for 130  |
@@ -125,3 +137,5 @@ def checkout(skus):
 
     return total
 
+print(checkout("Q"* 3))
+print(checkout("Q"* 4))
