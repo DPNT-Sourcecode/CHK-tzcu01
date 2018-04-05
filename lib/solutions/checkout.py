@@ -156,9 +156,17 @@ def checkout(skus):
             f_free_count -= 1
     total += u_count * 40
 
-
-    # | V    | 50    | 2V for 90, 3V for 130  |
-
+    v_count = skus.count("V")  # 2V for 90, 3V for 130
+    extra = v_count % 3
+    if v_count != extra:  # at least one special price
+        total += 130 * ((v_count - extra) / 3)
+        v_count -= v_count - extra
+    if extra:
+        extra = v_count % 2
+        if v_count != extra:  # at least one special price
+            total += 90 * ((v_count - extra) / 2)
+        if extra:
+            total += extra * 50
 
     # simple rules
     for item in skus:
@@ -166,5 +174,8 @@ def checkout(skus):
 
     return total
 
-print(checkout("UUU"))
-print(checkout("UUUUU"))
+# print(checkout("V"))
+# print(checkout("V"*3))
+# print(checkout("V"*5))
+# print(checkout("V"*6))
+# print(checkout("V"*7))
