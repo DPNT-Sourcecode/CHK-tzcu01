@@ -155,8 +155,12 @@ def checkout(skus):
             group_count += 1
 
     extra = group_count % 3
+
     if group_count != extra:  # at least one group price
+        print(((group_count - extra) / 3))
         total += 45 * ((group_count - extra) / 3)
+
+
     if extra:
         total += skus.count("S") * 20
         total += skus.count("T") * 20
@@ -177,5 +181,5 @@ def checkout(skus):
     return total
 
 print(checkout("SSSZ")) # 65
-print(checkout("ZZZS")) # 65
-print(checkout("STXS")) # 62
+# print(checkout("ZZZS")) # 65
+# print(checkout("STXS")) # 62
