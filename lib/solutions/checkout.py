@@ -33,17 +33,9 @@ def checkout(skus):
     extra = e_count % 2
     if e_count != extra and b_count:  # at least one special price 30
         b_free_count = (e_count - extra) / 2
-
-        # b = 2
-        # free = 1
-        # case 2
-        # b = 1
-        # free = 2
-
-        while b_count and b_free_count:
-            pass
-
-        #total += 30 * ((e_count - extra) / 2)  # todo test for 2 * B
+        while b_count and b_free_count:  # free B
+            b_count -= 1
+            b_free_count -= 1
     total += e_count * 40
 
     a_count = skus.count("A")
@@ -72,4 +64,4 @@ def checkout(skus):
 
 # print(checkout("EEB"))  # 80
 # print(checkout("EEEB"))  # 120
-print(checkout("EEEEBB"))  # 160
+# print(checkout("EEEEBB"))  # 160
