@@ -157,10 +157,28 @@ def checkout(skus):
     extra = group_count % 3
 
     if group_count != extra:  # at least one group price
-        discont_count = (group_count - extra) / 3
-        if dosc
-        total += 45 * discont_count
-
+        discount_count = (group_count - extra) / 3
+        if discount_count:
+            total += 45 * discount_count
+            while group_count - extra:
+                # start from a biggest price
+                if skus.count("Z"):
+                    skus = skus.replace("Z", "", 1)
+                    group_count -= 1
+                elif skus.count("S"):
+                    skus = skus.replace("S", "", 1)
+                    group_count -= 1
+                    continue
+                elif skus.count("T"):
+                    skus = skus.replace("T", "", 1)
+                    group_count -= 1
+                    continue
+                elif skus.count("Y"):
+                    skus = skus.replace("Y", "", 1)
+                    group_count -= 1
+                elif skus.count("X"):
+                    skus = skus.replace("X", "", 1)
+                    group_count -= 1
 
     if extra:
         total += skus.count("S") * 20
