@@ -73,12 +73,13 @@ def checkout(skus):
         while f_count and f_free_count:  # free F
             f_count -= 1
             f_free_count -= 1
+            total += 10
     if extra:
         total += extra * 10
 
     return total
 
-
-print(checkout("F"))
-print(checkout("FF"))
-print(checkout("FFF"))
+print(checkout("F")) # 10
+print(checkout("FF")) # 20
+print(checkout("FFF")) # 20
+print(checkout("FFFF")) # 30
