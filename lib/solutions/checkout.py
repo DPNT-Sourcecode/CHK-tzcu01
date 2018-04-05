@@ -77,7 +77,7 @@ def checkout(skus):
     k_count = skus.count("K")  # 2K for 150
     extra = k_count % 2
     if k_count != extra:  # at least one special price
-        total += 150 * ((k_count - extra) / 2)
+        total += 120 * ((k_count - extra) / 2)
     if extra:
         total += extra * 70
 
