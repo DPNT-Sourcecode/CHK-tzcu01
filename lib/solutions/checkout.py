@@ -70,8 +70,7 @@ def checkout(skus):
     extra = f_count % 2
     if extra != f_count and (f_count > 2 or extra):  # at least one F free
         f_free_count = (f_count - extra) / 2
-        print(f_count, f_free_count)
-        while f_count > 2 and f_free_count:  # free F
+        while f_count > 3 and f_free_count:  # free F
             f_count -= 1
             f_free_count -= 1
 
@@ -80,6 +79,6 @@ def checkout(skus):
     return total
 
 # print(checkout("F")) # 10
-print(checkout("FF")) # 20
+# print(checkout("FF")) # 20
 # print(checkout("FFF")) # 20
 # print(checkout("FFFF")) # 30
