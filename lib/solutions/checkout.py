@@ -49,14 +49,17 @@ def checkout(skus):
     total += skus.count("C") * 20
     total += skus.count("D") * 15
 
-    e_count = skus.count("E") * 40
+    e_count = skus.count("E")
     extra = e_count % 2
     if e_count != extra:  # at least one special price 30
         total += 30 * ((e_count - extra) / 2)  # todo test for 2 * B
+        total += 40 * ((e_count - extra) / 2)
     if extra:
         total += extra * 40
 
     return total
 
 
-#print(checkout("ABCDE")) # 155
+#print(checkout("E"))  # 40
+print(checkout("ABCDE"))  # 155
+print(checkout("EE"))  # 80
