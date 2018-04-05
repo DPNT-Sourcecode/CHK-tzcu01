@@ -11,4 +11,4 @@ def checkout(skus):
         return 20
     if skus == "D":
         return 15
-    return 0 # why?!
+    return -1
