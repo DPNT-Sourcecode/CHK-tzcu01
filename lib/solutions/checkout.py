@@ -200,5 +200,5 @@ def checkout(skus):
     return total
 
 print(checkout("SSSZ")) # 65
-# print(checkout("ZZZS")) # 65
-# print(checkout("STXS")) # 62
+print(checkout("ZZZS")) # 65
+print(checkout("STXS")) # 62
