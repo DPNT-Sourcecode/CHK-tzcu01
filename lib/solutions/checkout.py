@@ -3,7 +3,7 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-VALID_VALUES = ("A", "B", "C", "D", "E")
+VALID_VALUES = ("A", "B", "C", "D", "E", "F")
 
 # +------+-------+------------------------+
 # | Item | Price | Special offers         |
@@ -69,13 +69,16 @@ def checkout(skus):
     f_count = skus.count("F")
     extra = f_count % 2
     if extra != f_count:  # at least one F free
-
+        f_free_count = (f_count - extra) / 2
+        while f_count and f_free_count:  # free F
+            f_count -= 1
+            f_free_count -= 1
     if extra:
         total += extra * 10
 
     return total
 
 
-# print(checkout("EEB"))  # 80
-# print(checkout("EEEB"))  # 120
-# print(checkout("EEEEBB"))  # 160
+print(checkout("F"))
+print(checkout("FF"))
+print(checkout("FFF"))
