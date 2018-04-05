@@ -157,8 +157,9 @@ def checkout(skus):
     extra = group_count % 3
 
     if group_count != extra:  # at least one group price
-        print(((group_count - extra) / 3))
-        total += 45 * ((group_count - extra) / 3)
+        discont_count = (group_count - extra) / 3
+        if dosc
+        total += 45 * discont_count
 
 
     if extra:
