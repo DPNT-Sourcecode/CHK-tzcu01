@@ -4,10 +4,11 @@
 # skus = unicode string
 
 
-GROUP_SIMPLE = ("C", "D", "G", "I", "J", "L", "M", "O", "S", "T", "W", "X", "Y", "Z",)
+#GROUP_SIMPLE = ("C", "D", "G", "I", "J", "L", "M", "O", "S", "T", "W", "X", "Y", "Z",)
 GROUP_SPECIAL = ("A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V")
 
-GROUP_SIMPLE2 = {"C": 20}
+GROUP_SIMPLE = {"C": 20, "D": 15, "G": 20, "I": 35, "J": 60, "L": 90, "M": 15, "O": 10,
+                "S": 30, "T": 20, "W": 20, "X": 90, "Y": 10, "Z": 50}
 
 # +------+-------+------------------------+
 # | Item | Price | Special offers         |
@@ -48,8 +49,7 @@ GROUP_SIMPLE2 = {"C": 20}
 
 def checkout(skus):
     for item in skus:
-        print( item in GROUP_SIMPLE, item in GROUP_SPECIAl )
-        if item in GROUP_SIMPLE or item in GROUP_SPECIAL:  # validate
+        if item not in GROUP_SIMPLE and item not in GROUP_SPECIAL:  # validate
             return -1
 
     total = 0
@@ -105,5 +105,3 @@ def checkout(skus):
 
     return total
 
-
-print(checkout("C"))
