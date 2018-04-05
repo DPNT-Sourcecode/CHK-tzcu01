@@ -158,9 +158,6 @@ def checkout(skus):
     if group_count != extra:  # at least one group price
         total += 45 * ((group_count - extra) / 3)
     if extra:
-        return -1 #  todo
-
-    if group_count == extra:
         total += skus.count("S") * 20
         total += skus.count("T") * 20
         total += skus.count("X") * 17
