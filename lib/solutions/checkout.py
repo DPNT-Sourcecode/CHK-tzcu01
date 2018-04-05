@@ -37,16 +37,6 @@ def checkout(skus):
             return -1
 
     total = 0
-    # should be first since we have free B
-    e_count = skus.count("E")  # 2E get one B free
-    b_count = skus.count("B")
-    extra = e_count % 2
-    if e_count != extra and b_count:  # at least one special price 30
-        b_free_count = (e_count - extra) / 2
-        while b_count and b_free_count:  # free B
-            b_count -= 1
-            b_free_count -= 1
-    total += e_count * 40
 
     a_count = skus.count("A")  # 3A for 130, 5A for 200
     extra = a_count % 5
@@ -60,7 +50,21 @@ def checkout(skus):
         if extra:
             total += extra * 50
 
-    # b_count already declared
+    # should be before B since the rule 2E get one B free
+    e_count = skus.count("E")
+    b_count = skus.count("B")
+    extra = e_count % 2
+    if e_count != extra and b_count:  # at least one special price 30
+        b_free_count = (e_count - extra) / 2
+        replace_times = 0
+        while b_count and b_free_count:  # free B
+            replace_times += 1
+            b_count -= 1
+            b_free_count -= 1
+        skus = skus.replace("B", "", replace_times)  # delete free B
+    total += e_count * 40
+
+    b_count = skus.count("B")
     extra = b_count % 2  # 2B for 45
     if b_count != extra:  # at least one special price 45
         total += 45 * ((b_count - extra) / 2)
@@ -118,6 +122,21 @@ def checkout(skus):
     if extra:
         total += extra * 50
 
+    # should be before Q since the rule 3R get one Q free
+    # R = 50
+    r_count = skus.count("R")
+    q_count = skus.count("Q")
+    extra = r_count % 3
+    if r_count != extra and q_count:  # at least one special price
+        q_free_count = (r_count - extra) / 3
+        replace_times = 0
+        while q_count and q_free_count:  # free B
+            replace_times += 1
+            q_count -= 1
+            q_free_count -= 1
+        skus = skus.replace("Q", "", replace_times)  # delete free Q
+    total += r_count * 40
+
     q_count = skus.count("Q")
     extra = q_count % 3  # 3Q for 80
     if q_count != extra:  # at least one special price
@@ -126,7 +145,7 @@ def checkout(skus):
         total += extra * 30
 
 
-    # | R    | 50    | 3R get one Q free      | !
+
     # | U    | 40    | 3U get one U free      |
     # | V    | 50    | 2V for 90, 3V for 130  |
 
