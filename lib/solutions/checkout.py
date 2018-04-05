@@ -3,7 +3,9 @@
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-VALID_VALUES = ("A", "B", "C", "D", "E", "F")
+
+GROUP_SIMPLE = ("C", "D", "G", "I", "J", "L", "M", "O", "S", "T", "W", "X", "Y", "Z",)
+GROUP_SPECIAL = ("A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V")
 
 # +------+-------+------------------------+
 # | Item | Price | Special offers         |
@@ -30,7 +32,7 @@ VALID_VALUES = ("A", "B", "C", "D", "E", "F")
 # | O    | 10    |                        |
 # | P    | 50    | 5P for 200             |
 # | Q    | 30    | 3Q for 80              |
-# | R    | 50    | 3R get one Q free      |
+# | R    | 50    | 3R get one Q free      | !
 # | S    | 30    |                        |
 # | T    | 20    |                        |
 # | U    | 40    | 3U get one U free      |
@@ -43,8 +45,8 @@ VALID_VALUES = ("A", "B", "C", "D", "E", "F")
 
 
 def checkout(skus):
-    for s in skus:
-        if s not in VALID_VALUES:  # validate
+    for item in skus:
+        if item not in GROUP_SIMPLE or item not in GROUP_SPECIAL:  # validate
             return -1
 
     total = 0
@@ -78,8 +80,6 @@ def checkout(skus):
     if extra:
         total += extra * 30
 
-    total += skus.count("C") * 20
-    total += skus.count("D") * 15
 
     f_count = skus.count("F")
     extra = f_count % 2
@@ -92,5 +92,11 @@ def checkout(skus):
             f_count -= 1
             f_free_count -= 1
     total += f_count * 10
+
+    if item in GROUP_SIMPLE:
+        item
+    total += skus.count("C") * 20
+    total += skus.count("D") * 15
+
 
     return total
