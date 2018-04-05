@@ -79,7 +79,7 @@ def checkout(skus):
     if k_count != extra:  # at least one special price
         total += 150 * ((k_count - extra) / 2)
     if extra:
-        total += extra * 80
+        total += extra * 70
 
     n_count = skus.count("N")  # 3N get one M free
     m_count = skus.count("M")
@@ -148,6 +148,12 @@ def checkout(skus):
             total += extra * 50
 
     # GROUP
+    # not clear yet, what about order?
+    total += skus.count("S") * 20
+    total += skus.count("T") * 20
+    total += skus.count("X") * 17
+    total += skus.count("Y") * 20
+    total += skus.count("Z") * 21
 
     # | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
     # | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
