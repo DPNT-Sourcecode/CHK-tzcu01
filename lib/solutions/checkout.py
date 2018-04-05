@@ -20,6 +20,7 @@ VALID_VALUES = ("A", "B", "C", "D")
 # | E    | 40    | 2E get one B free      |
 # +------+-------+------------------------+
 
+
 def checkout(skus):
     for s in skus:
         if s not in VALID_VALUES:
@@ -28,40 +29,31 @@ def checkout(skus):
     total = 0
     a_count = skus.count("A")
     extra = a_count % 5
-    print(extra, a_count % 5)
     if a_count != extra:  # at least one special price 200
-        print(((a_count - extra) / 5))
         total += 200 * ((a_count - extra) / 5)
-
+        a_count -= a_count - extra
     if extra:
         extra = a_count % 3
-        print(extra,  a_count % 3)
         if a_count != extra:  # at least one special price 130
             total += 130 * ((a_count - extra) / 3)
         if extra:
             total += extra * 50
 
-    # b_count = skus.count("B")
-    # extra = b_count % 2
-    # if b_count != extra:  # at least one special price 45
-    #     total += 45 * ((b_count - extra) / 2)
-    # if extra:
-    #     total += extra * 30
-    #
-    # total += skus.count("C") * 20
-    # total += skus.count("D") * 15
-    #
-    # e_count = skus.count("E") * 40
-    # extra = e_count % 2
-    # if e_count != extra:  # at least one special price 30
-    #     total += 30 * ((e_count - extra) / 2)  # todo test for 2 * B
-    # if extra:
-    #     total += extra * 40
+    b_count = skus.count("B")
+    extra = b_count % 2
+    if b_count != extra:  # at least one special price 45
+        total += 45 * ((b_count - extra) / 2)
+    if extra:
+        total += extra * 30
+
+    total += skus.count("C") * 20
+    total += skus.count("D") * 15
+
+    e_count = skus.count("E") * 40
+    extra = e_count % 2
+    if e_count != extra:  # at least one special price 30
+        total += 30 * ((e_count - extra) / 2)  # todo test for 2 * B
+    if extra:
+        total += extra * 40
 
     return total
-
-
-#print(checkout("A" * 5)) # 200
-print(checkout("A" * 6)) # 250
-# print(checkout("A" * 8)) # 330
-# print(checkout("A" * 9)) # 380 (5 + 3 + 1)
