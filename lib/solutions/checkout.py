@@ -27,6 +27,14 @@ def checkout(skus):
             return -1
 
     total = 0
+    # should be first since we have free B
+    e_count = skus.count("E")
+    extra = e_count % 2
+    if e_count != extra and skus.count("B"):  # at least one special price 30
+
+        total += 30 * ((e_count - extra) / 2)  # todo test for 2 * B
+    total += e_count * 40
+
     a_count = skus.count("A")
     extra = a_count % 5
     if a_count != extra:  # at least one special price 200
@@ -48,16 +56,9 @@ def checkout(skus):
 
     total += skus.count("C") * 20
     total += skus.count("D") * 15
-
-    e_count = skus.count("E")
-    # extra = e_count % 2
-    # if e_count != extra:  # at least one special price 30
-    #     total += 30 * ((e_count - extra) / 2)  # todo test for 2 * B
-    total += e_count * 40
-
     return total
 
 
-#print(checkout("E"))  # 40
-#print(checkout("ABCDE"))  # 155
-#print(checkout("EE"))  # 80   40*2 + 30 why 80 but not 110 !!!
+print(checkout("EEB"))  # 80
+print(checkout("EEEB"))  # 120
+print(checkout("EEEEBB"))  # 160
