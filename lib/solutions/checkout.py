@@ -32,6 +32,12 @@ def checkout(skus):
     extra = e_count % 2
     if e_count != extra and skus.count("B"):  # at least one special price 30
         b_free_count = (e_count - extra) / 2
+        b_count = skus.count("B")
+        # b = 2
+        # free = 1
+        extra = b_count % b_free_count
+        while b_count and b_free_count:
+            pass
 
         #total += 30 * ((e_count - extra) / 2)  # todo test for 2 * B
     total += e_count * 40
