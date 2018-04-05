@@ -14,21 +14,18 @@ def checkout(skus):
     a_count = skus.count("A")
     if a_count:
         if a_count == 3:  # todo > 3
-            return 130
-        return a_count * 50
+            total += 130
+        else:
+            total += (a_count * 50)
 
     b_count = skus.count("B")
-    if a_count:
-        if a_count == 2:  # todo > 3
-            return 45
-        return a_count * 30
+    if b_count:
+        if b_count == 2:  # todo > 3
+            total += 45
+        else:
+            total += b_count * 30
 
-    if skus == "A":
-        return 50
-    if skus == "B":
-        return 30
-    if skus == "C":
-        return 20
-    if skus == "D":
-        return 15
-    return -1
+    total += skus.count("C") * 20
+    total += skus.count("D") * 15
+
+    return total
