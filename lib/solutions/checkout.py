@@ -99,8 +99,8 @@ def checkout(skus):
         total += extra * 80
 
     n_count = skus.count("N")  # 3N get one M free
-    m_count = skus.count("M")  # delete from skus
-    extra = n_count % 2
+    m_count = skus.count("M")
+    extra = n_count % 3
     if n_count != extra and m_count:  # at least one special price 30
         b_free_count = (n_count - extra) / 3
         replace_times = 0
@@ -108,9 +108,8 @@ def checkout(skus):
             replace_times += 1
             m_count -= 1
             b_free_count -= 1
-        skus.replace("M", "", replace_times)
+        skus = skus.replace("M", "", replace_times)  # delete free M
     total += n_count * 40
-    # "M": 15
 
     # | N    | 40    | 3N get one M free      |
     # | P    | 50    | 5P for 200             |
