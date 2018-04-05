@@ -5,11 +5,6 @@
 
 VALID_VALUES = ("A", "B", "C", "D", "E")
 
-# We are going to sell a new item E.
-# Normally E costs 40, but if you buy 2 of Es you will get B free.
-# How cool is that ? Multi-priced items also seemed to work well so we should have more of these.
-#
-# Our price table and offers:
 # +------+-------+------------------------+
 # | Item | Price | Special offers         |
 # +------+-------+------------------------+
@@ -18,6 +13,17 @@ VALID_VALUES = ("A", "B", "C", "D", "E")
 # | C    | 20    |                        |
 # | D    | 15    |                        |
 # | E    | 40    | 2E get one B free      |
+# +------+-------+------------------------+
+
+# +------+-------+------------------------+
+# | Item | Price | Special offers         |
+# +------+-------+------------------------+
+# | A    | 50    | 3A for 130, 5A for 200 |
+# | B    | 30    | 2B for 45              |
+# | C    | 20    |                        |
+# | D    | 15    |                        |
+# | E    | 40    | 2E get one B free      |
+# | F    | 10    | 2F get one F free      |
 # +------+-------+------------------------+
 
 
@@ -59,6 +65,14 @@ def checkout(skus):
 
     total += skus.count("C") * 20
     total += skus.count("D") * 15
+
+    f_count = skus.count("F")
+    extra = f_count % 2
+    if extra != f_count:  # at least one F free
+
+    if extra:
+        total += extra * 10
+
     return total
 
 
