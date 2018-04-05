@@ -176,8 +176,6 @@ def checkout(skus):
 
     return total
 
-# print(checkout("V"))
-# print(checkout("V"*3))
-# print(checkout("V"*5))
-# print(checkout("V"*6))
-# print(checkout("V"*7))
+print(checkout("SSSZ")) # 65
+print(checkout("ZZZS")) # 65
+print(checkout("STXS")) # 62
