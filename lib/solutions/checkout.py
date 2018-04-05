@@ -22,39 +22,25 @@ GROUP_SIMPLE = {"C": 20, "D": 15, "G": 20, "I": 35, "J": 60, "L": 90, "M": 15, "
 # +------+-------+------------------------+
 #
 # +------+-------+------------------------+
-
-
-# | G    | 20    |                        |
 # | H    | 10    | 5H for 45, 10H for 80  |
-# | I    | 35    |                        |
-# | J    | 60    |                        |
 # | K    | 80    | 2K for 150             |
-# | L    | 90    |                        |
-# | M    | 15    |                        |
 # | N    | 40    | 3N get one M free      |
-# | O    | 10    |                        |
 # | P    | 50    | 5P for 200             |
 # | Q    | 30    | 3Q for 80              |
 # | R    | 50    | 3R get one Q free      | !
-# | S    | 30    |                        |
-# | T    | 20    |                        |
 # | U    | 40    | 3U get one U free      |
 # | V    | 50    | 2V for 90, 3V for 130  |
-# | W    | 20    |                        |
-# | X    | 90    |                        |
-# | Y    | 10    |                        |
-# | Z    | 50    |                        |
 # +------+-------+------------------------+
 
 
 def checkout(skus):
     for item in skus:
-        if item not in GROUP_SIMPLE and item not in GROUP_SPECIAL:  # validate
+        if item not in GROUP_SIMPLE.keys() and item not in GROUP_SPECIAL:  # validate
             return -1
 
     total = 0
     # should be first since we have free B
-    e_count = skus.count("E")
+    e_count = skus.count("E")  # 2E get one B free
     b_count = skus.count("B")
     extra = e_count % 2
     if e_count != extra and b_count:  # at least one special price 30
@@ -64,7 +50,7 @@ def checkout(skus):
             b_free_count -= 1
     total += e_count * 40
 
-    a_count = skus.count("A")
+    a_count = skus.count("A")  # 3A for 130, 5A for 200
     extra = a_count % 5
     if a_count != extra:  # at least one special price 200
         total += 200 * ((a_count - extra) / 5)
@@ -77,12 +63,11 @@ def checkout(skus):
             total += extra * 50
 
     # b_count already declared
-    extra = b_count % 2
+    extra = b_count % 2  # 2B for 45
     if b_count != extra:  # at least one special price 45
         total += 45 * ((b_count - extra) / 2)
     if extra:
         total += extra * 30
-
 
     f_count = skus.count("F")
     extra = f_count % 2
@@ -96,12 +81,8 @@ def checkout(skus):
             f_free_count -= 1
     total += f_count * 10
 
-    # if item in GROUP_SIMPLE:
-    #     item
-    # total += skus.count("C") * 20
-    # total += skus.count("D") * 15
     for item in skus:
-        total += GROUP_SIMPLE2.get(item, 0)
+        total += GROUP_SIMPLE.get(item, 0)
 
     return total
 
