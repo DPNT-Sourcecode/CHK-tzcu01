@@ -20,8 +20,8 @@ GROUP_SIMPLE = {"C": 20, "D": 15, "G": 20, "I": 35, "J": 60, "L": 90, "M": 15, "
 # | E    | 40    | 2E get one B free      |
 # | F    | 10    | 2F get one F free      |
 # | H    | 10    | 5H for 45, 10H for 80  |
-
 # | K    | 80    | 2K for 150             |
+
 # | N    | 40    | 3N get one M free      |
 # | P    | 50    | 5P for 200             |
 # | Q    | 30    | 3Q for 80              |
@@ -97,6 +97,26 @@ def checkout(skus):
         total += 150 * ((k_count - extra) / 2)
     if extra:
         total += extra * 80
+
+    n_count = skus.count("N")  # 3N get one M free
+    m_count = skus.count("M")  # delete from skus
+    extra = n_count % 2
+    if n_count != extra and m_count:  # at least one special price 30
+        b_free_count = (n_count - extra) / 3
+        while m_count and b_free_count:  # free M
+            skus.
+            m_count -= 1
+            b_free_count -= 1
+    total += n_count * 40
+    # "M": 15
+
+    # | N    | 40    | 3N get one M free      |
+    # | P    | 50    | 5P for 200             |
+    # | Q    | 30    | 3Q for 80              |
+    # | R    | 50    | 3R get one Q free      | !
+    # | U    | 40    | 3U get one U free      |
+    # | V    | 50    | 2V for 90, 3V for 130  |
+
 
     # simple rules
     for item in skus:
