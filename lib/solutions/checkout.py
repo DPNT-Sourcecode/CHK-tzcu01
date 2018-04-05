@@ -12,17 +12,11 @@ SIMPLE = {"C": 20, "D": 15, "G": 20, "I": 35, "J": 60, "L": 90, "M": 15, "O": 10
 
 def checkout(skus):
     for item in skus:
-        if item not in SIMPLE.keys() and item not in SPECIAL:  # validate
+        if item not in SIMPLE.keys() and item not in SPECIAL and item not in GROUP:  # validate
             return -1
 
     total = 0
-
-    # | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-    # | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-    # | X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |
-    # | Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-    # | Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 |
-
+    # SPECIAL
     a_count = skus.count("A")  # 3A for 130, 5A for 200
     extra = a_count % 5
     if a_count != extra:  # at least one special price
@@ -153,7 +147,15 @@ def checkout(skus):
         if extra:
             total += extra * 50
 
-    # simple rules
+    # GROUP
+
+    # | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 |
+
+    # SIMPLE
     for item in skus:
         total += SIMPLE.get(item, 0)
 
