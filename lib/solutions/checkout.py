@@ -19,6 +19,7 @@ VALID_VALUES = ("A", "B", "C", "D")
 # | D    | 15    |                        |
 # | E    | 40    | 2E get one B free      |
 # +------+-------+------------------------+
+
 def checkout(skus):
     for s in skus:
         if s not in VALID_VALUES:
@@ -33,13 +34,8 @@ def checkout(skus):
         extra = a_count % 3
         if a_count != extra:  # at least one special price 130
             total += 130 * ((a_count - extra) / 3)
-    # if a_count != extra:
-    #     times = (a_count - extra) / 3
-    #     extra = a_count % 5
-    #     if a_count != extra: # for 5 or more
-    #
-    #
-    #     total += 130 * times
+        if extra:
+            total += extra * 50
     if extra:
         total += extra * 50
 
@@ -55,9 +51,15 @@ def checkout(skus):
 
     e_count = skus.count("E") * 40
     extra = e_count % 2
-    if e_count != extra:
-        total += 30 * ((e_count - extra) / 2)  #todo test for 2 * B
+    if e_count != extra:  # at least one special price 30
+        total += 30 * ((e_count - extra) / 2)  # todo test for 2 * B
     if extra:
-        total += extra * 30
+        total += extra * 40
 
     return total
+
+
+print(checkout("A" * 5)) # 200
+print(checkout("A" * 6)) # 250
+print(checkout("A" * 8)) # 330
+print(checkout("A" * 9)) # 380 (5 + 3 + 1)
