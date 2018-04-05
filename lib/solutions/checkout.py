@@ -9,6 +9,7 @@ def checkout(skus):
     for s in skus:
         if s not in VALID_VALUES:
             return -1
+        
 
     total = 0
     a_count = skus.count("A")
@@ -29,3 +30,8 @@ def checkout(skus):
     total += skus.count("D") * 15
 
     return total
+
+
+print(checkout("AAAA")) # 180
+#print(checkout("AAAAA")) # 230
+#print(checkout("AAAAAA")) # 260
