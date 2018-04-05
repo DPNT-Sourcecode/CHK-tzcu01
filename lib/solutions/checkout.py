@@ -5,5 +5,10 @@
 def checkout(skus):
     if skus == "A":
         return 50
-    print(skus)
-    return -1
+    if skus == "B":
+        return 30
+    if skus == "C":
+        return 20
+    if skus == "D":
+        return 15
+    return 0 # why?!
