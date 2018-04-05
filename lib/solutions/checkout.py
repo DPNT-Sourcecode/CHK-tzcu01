@@ -81,6 +81,18 @@ def checkout(skus):
             f_free_count -= 1
     total += f_count * 10
 
+    h_count = skus.count("H")  # 5H for 45, 10H for 80
+    extra = h_count % 10
+    if h_count != extra:  # at least one special price 80
+        total += 80 * ((h_count - extra) / 10)
+        h_count -= h_count - extra
+    if extra:
+        extra = h_count % 5
+        if h_count != extra:  # at least one special price 45
+            total += 45 * ((h_count - extra) / 5)
+        if extra:
+            total += extra * 10
+
     for item in skus:
         total += GROUP_SIMPLE.get(item, 0)
 
