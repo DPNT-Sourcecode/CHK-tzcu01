@@ -1,26 +1,27 @@
 # python2 =\
-# DO I NEED TO DO IT FASTER? that's not clear | any extra requirements?
+# DO I NEED TO DO IT FASTER?
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-GROUP_SPECIAL = ("A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V")
+SPECIAL = ("A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V",)
 
-GROUP_SIMPLE = {"C": 20, "D": 15, "G": 20, "I": 35, "J": 60, "L": 90, "M": 15, "O": 10,
-                "S": 30, "T": 20, "W": 20, "X": 90, "Y": 10, "Z": 50}
+GROUP = ("S", "T", "X", "Y", "Z",)
 
-# | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-# | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-# | X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |
-# | Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
-# | Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 |
+SIMPLE = {"C": 20, "D": 15, "G": 20, "I": 35, "J": 60, "L": 90, "M": 15, "O": 10, "W": 20}
 
 
 def checkout(skus):
     for item in skus:
-        if item not in GROUP_SIMPLE.keys() and item not in GROUP_SPECIAL:  # validate
+        if item not in SIMPLE.keys() and item not in SPECIAL:  # validate
             return -1
 
     total = 0
+
+    # | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | X    | 17    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | Y    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
+    # | Z    | 21    | buy any 3 of (S,T,X,Y,Z) for 45 |
 
     a_count = skus.count("A")  # 3A for 130, 5A for 200
     extra = a_count % 5
@@ -154,7 +155,7 @@ def checkout(skus):
 
     # simple rules
     for item in skus:
-        total += GROUP_SIMPLE.get(item, 0)
+        total += SIMPLE.get(item, 0)
 
     return total
 
