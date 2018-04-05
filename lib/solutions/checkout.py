@@ -103,10 +103,12 @@ def checkout(skus):
     extra = n_count % 2
     if n_count != extra and m_count:  # at least one special price 30
         b_free_count = (n_count - extra) / 3
+        replace_times = 0
         while m_count and b_free_count:  # free M
-            skus.
+            replace_times += 1
             m_count -= 1
             b_free_count -= 1
+        skus.replace("M", "", replace_times)
     total += n_count * 40
     # "M": 15
 
