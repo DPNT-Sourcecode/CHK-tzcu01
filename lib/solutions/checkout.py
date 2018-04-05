@@ -1,10 +1,8 @@
 # python2 =\
-# DO I NEED TO DO IT FASTER?
+# DO I NEED TO DO IT FASTER? that's not clear | any extra requirements?
 # noinspection PyUnusedLocal
 # skus = unicode string
 
-
-#GROUP_SIMPLE = ("C", "D", "G", "I", "J", "L", "M", "O", "S", "T", "W", "X", "Y", "Z",)
 GROUP_SPECIAL = ("A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V")
 
 GROUP_SIMPLE = {"C": 20, "D": 15, "G": 20, "I": 35, "J": 60, "L": 90, "M": 15, "O": 10,
