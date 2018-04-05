@@ -28,7 +28,9 @@ def checkout(skus):
     a_count = skus.count("A")
     extra = a_count % 3
     if a_count != extra:
-        total += 130 * ((a_count - extra) / 3)
+        times = (a_count - extra) / 3
+        extra = a_count % 5
+        total += 130 * times
     if extra:
         total += extra * 50
 
@@ -41,5 +43,12 @@ def checkout(skus):
 
     total += skus.count("C") * 20
     total += skus.count("D") * 15
+
+    e_count = skus.count("E") * 40
+    extra = e_count % 2
+    if e_count != extra:
+        total += 30 * ((e_count - extra) / 2)  #todo test for 2 * B
+    if extra:
+        total += extra * 30
 
     return total
