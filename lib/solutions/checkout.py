@@ -19,10 +19,8 @@ GROUP_SIMPLE = {"C": 20, "D": 15, "G": 20, "I": 35, "J": 60, "L": 90, "M": 15, "
 # | D    | 15    |                        |
 # | E    | 40    | 2E get one B free      |
 # | F    | 10    | 2F get one F free      |
-# +------+-------+------------------------+
-#
-# +------+-------+------------------------+
 # | H    | 10    | 5H for 45, 10H for 80  |
+
 # | K    | 80    | 2K for 150             |
 # | N    | 40    | 3N get one M free      |
 # | P    | 50    | 5P for 200             |
@@ -93,6 +91,14 @@ def checkout(skus):
         if extra:
             total += extra * 10
 
+    k_count = skus.count("K")  # 2K for 150
+    extra = k_count % 2
+    if k_count != extra:  # at least one special price 150
+        total += 150 * ((k_count - extra) / 2)
+    if extra:
+        total += extra * 80
+
+    # simple rules
     for item in skus:
         total += GROUP_SIMPLE.get(item, 0)
 
