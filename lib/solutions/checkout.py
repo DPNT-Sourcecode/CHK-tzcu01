@@ -7,6 +7,8 @@
 GROUP_SIMPLE = ("C", "D", "G", "I", "J", "L", "M", "O", "S", "T", "W", "X", "Y", "Z",)
 GROUP_SPECIAL = ("A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V")
 
+GROUP_SIMPLE2 = {"C": 20}
+
 # +------+-------+------------------------+
 # | Item | Price | Special offers         |
 # +------+-------+------------------------+
@@ -46,7 +48,8 @@ GROUP_SPECIAL = ("A", "B", "E", "F", "H", "K", "N", "P", "Q", "R", "U", "V")
 
 def checkout(skus):
     for item in skus:
-        if item not in GROUP_SIMPLE or item not in GROUP_SPECIAL:  # validate
+        print( item in GROUP_SIMPLE, item in GROUP_SPECIAl )
+        if item in GROUP_SIMPLE or item in GROUP_SPECIAL:  # validate
             return -1
 
     total = 0
@@ -93,10 +96,14 @@ def checkout(skus):
             f_free_count -= 1
     total += f_count * 10
 
-    if item in GROUP_SIMPLE:
-        item
-    total += skus.count("C") * 20
-    total += skus.count("D") * 15
-
+    # if item in GROUP_SIMPLE:
+    #     item
+    # total += skus.count("C") * 20
+    # total += skus.count("D") * 15
+    for item in skus:
+        total += GROUP_SIMPLE2.get(item, 0)
 
     return total
+
+
+print(checkout("C"))
