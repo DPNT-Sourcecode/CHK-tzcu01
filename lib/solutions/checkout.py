@@ -149,11 +149,18 @@ def checkout(skus):
 
     # GROUP
     # not clear yet, what about order?
-    total += skus.count("S") * 20
-    total += skus.count("T") * 20
-    total += skus.count("X") * 17
-    total += skus.count("Y") * 20
-    total += skus.count("Z") * 21
+    group_count = 0
+    for item in skus:
+        if item in GROUP:
+            group_count += 1
+    if group_count:
+        total += group_count * 45 # todo!
+    else:
+        total += skus.count("S") * 20
+        total += skus.count("T") * 20
+        total += skus.count("X") * 17
+        total += skus.count("Y") * 20
+        total += skus.count("Z") * 21
 
     # | S    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
     # | T    | 20    | buy any 3 of (S,T,X,Y,Z) for 45 |
